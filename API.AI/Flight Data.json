@@ -1,0 +1,13 @@
+[
+{"Airline":"AjaxAir","Flight number":113,"Departure City":"Portland","Departure time":"8:03 AM","Arrival City":"Atlanta ","Arrival Time":"12:51 PM","Status":"Landed"},
+{"Airline":"AjaxAir","Flight number":114,"Departure City":"Atlanta","Departure time":"2:05 PM","Arrival City":"Portland","Arrival Time":"4:44 PM","Status":"boarding"},
+{"Airline":"BakerAir","Flight number":121,"Departure City":"Atlanta","Departure time":"5:14 PM","Arrival City":"New York","Arrival Time":"7:20 PM","Status":"departed"},
+{"Airline":"BakerAir","Flight number":122,"Departure City":"New York","Departure time":"9:00 PM","Arrival City":"Portland","Arrival Time":"12:13 AM","Status":"scheduled"},
+{"Airline":"BakerAir","Flight number":124,"Departure City":"Portland","Departure time":"9:03 AM","Arrival City":"Atlanta ","Arrival Time":"12:52 PM","Status":"delayed to 9:55"},
+{"Airline":"CarsonAir","Flight number":522,"Departure City":"Portland","Departure time":"2:15 PM","Arrival City":"New York","Arrival Time":"4:58 PM","Status":"scheduled"},
+{"Airline":"CarsonAir","Flight number":679,"Departure City":"New York","Departure time":"9:30 AM","Arrival City":"Atlanta ","Arrival Time":"11:30 AM","Status":"departed"},
+{"Airline":"CarsonAir","Flight number":670,"Departure City":"New York","Departure time":"9:30 AM","Arrival City":"Portland","Arrival Time":"12:05 PM","Status":"departed"},
+{"Airline":"CarsonAir","Flight number":671,"Departure City":"Atlanta","Departure time":"1:20 PM","Arrival City":"New York","Arrival Time":"2:55 PM","Status":"scheduled"},
+{"Airline":"CarsonAir","Flight number":672,"Departure City":"Portland","Departure time":"1:25 PM","Arrival City":"New York","Arrival Time":"8:36 PM","Status":"scheduled"}
+]
+
