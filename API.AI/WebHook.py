@@ -39,7 +39,7 @@ def makeWebhookResult(req):
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
-    flight = parameters.get("Flight Number")
+    flight = parameters.get("FlightNumber")
 
     resultDic=getJsonData(flight,"Status")
     print(resultDic)
