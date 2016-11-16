@@ -25,7 +25,8 @@ def webhook():
     r = make_response(res)
     r.headers['Content-Type'] = 'application/json'
     return r
-def getJsonData([arg1,] *params):
+	
+def getJsonData(args1,args2):
     jsondata = json.load(open("FlightData.json","r"))
 	for airline in jsondata:
 	    for key in dic:
