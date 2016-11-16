@@ -14,7 +14,7 @@ app = Flask(__name__)
 @app.route('/webhook', methods=['POST'])
 def webhook():
     req = request.get_json(silent=True, force=True)
-
+    
     print("Request:")
     print(json.dumps(req, indent=4))
 
@@ -27,11 +27,12 @@ def webhook():
     return r
 	
 def getJsonData(args1,args2):
-    jsondata = json.load(open("FlightData.json","r"))
+	jsondata=json.load(open('Flight Data.json'))
+	    
 	for airline in jsondata:
-	    for key in dic:
-	      if(args1 == dic.get(key))
-		       return {"result":dic.get(args2)}
+		for key in dic:
+		  if(args1 == dic.get(key)):
+			   return {"result":dic.get(args2)}
 	return {}		   
 def makeWebhookResult(req):
     if req.get("result").get("action") != "Status":
@@ -41,7 +42,7 @@ def makeWebhookResult(req):
     flight = parameters.get("Flight Number")
 
     resultDic=getJsonData(flight,"Status")
-     print(resultDic)
+    print(resultDic)
     speech = "The status of flight " + flight + " is " + resultDic.get("result")
 
     print("Response:")
@@ -59,6 +60,6 @@ def makeWebhookResult(req):
 if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
 
-    print "Starting app on port %d" % port
+    print("Starting app on port %d" % port)
 
     app.run(debug=True, port=port, host='0.0.0.0')
