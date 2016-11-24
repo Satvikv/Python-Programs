@@ -1,0 +1,26 @@
+import urllib.request
+import json
+class JSONParser:
+
+	fullJSONString=str()
+	
+
+	def __init__(self):
+		self.fullJSONString=''
+		
+	def parseJSONString(self,url):
+		total_sum=0
+		try:
+			self.fullJSONString= urllib.request.urlopen(url).read()
+			jsonTree=json.load(self.fullJSONString)
+			for elem in jsonTree.get('comments'):
+				total_sum+=int(elem.text)
+			return total_sum
+		except urllib.error.URLError as e:
+		    print ("Exception occured",str(e))
+			
+		
+
+print ("The count is",XMLParser().parseXMLString('http://python-data.dr-chuck.net/comments_321992.xml'))
+
+
