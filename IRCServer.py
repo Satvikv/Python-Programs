@@ -196,7 +196,7 @@ class IRCServer:
             sys.exit(1)
         else:
             # got a message, do something :)
-            print("got a message, do something :)")
+            print(message)
         """
             try:
 
