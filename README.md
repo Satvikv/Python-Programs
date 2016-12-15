@@ -1,9 +1,9 @@
 *********************************IRC PROJECT*****************************************
 
 
-Run a server. 
+Run the server IRCServer.py. 
 
-Run multiple clients and send messages between the clients using the commands below.
+Run multiple clients IRCClient.py and send messages between the clients using the commands below.
 
 For User registration: USER <u_name> 
 For creating a group: CREATE <group_name> 
