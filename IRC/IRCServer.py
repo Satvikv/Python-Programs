@@ -39,6 +39,7 @@ class IRCServer:
 
     def listen(self):
         self.serversock.listen(5)
+
         while True:
             clientconn, address = self.serversock.accept()
             #clientconn.settimeout(60)
@@ -125,8 +126,8 @@ class IRCServer:
                             listcmd = 'LIST '+str(self.channels)
                             clientconn.send(bytes(listcmd, 'UTF-8'))
                         elif self.data.startswith("MSG"):
-                            channel = self.data.split()[1]
-                            message = self.data.split()[2]
+                            channel = self.data.split(" ",2)[1]
+                            message = self.data.split()[2][0:]
                             if channel in self.client_in_channels:
                                 if self.username in self.client_in_channels[channel]:
                                     self.broadcastToClients(channel, message, self.username)

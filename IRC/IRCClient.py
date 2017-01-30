@@ -1,5 +1,6 @@
 import socket
 import sys
+import select
 
 # from javax.swing import JFrame
 class SocketClientTest:
@@ -32,6 +33,8 @@ class SocketClientTest:
 
     def sendtoserver(self, soc):
         # self.messageInput=	self.chatTextBox.get()
+
+
         self.serverMessage = soc.recv(1024).decode('UTF-8').strip()
         if self.serverMessage == "PROVIDEANAME":
             self.messageInput = input("Register with a user name: ")
@@ -47,8 +50,7 @@ class SocketClientTest:
             self.command=sys.stdin.readline()
             soc.send(bytes(self.command,'UTF-8'))
         elif self.serverMessage.startswith("MESSAGE"):
-             for each in self.serverMessage.split(":")[1:]:
-                 message=" "+each
+             message=" "+self.serverMessage.split(":",1)[1][0:]
 
              print(message)
              message = input("Response: ")
@@ -63,8 +65,9 @@ class SocketClientTest:
         self.clientSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.clientSock.connect(self.addressFamily)
         print("Connected to server")
+        sock_list=[sys.stdin,self.clientSock]
         while True:
-            self.sendtoserver(self.clientSock)
+           self.sendtoserver(self.clientSock)
 
 
 s = SocketClientTest()

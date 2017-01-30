@@ -13,6 +13,7 @@ import socket
 import time
 import logging
 import sys
+import select
 
 HOST = '127.0.0.1'
 PORT = 8018
@@ -26,15 +27,20 @@ class WhatsUpClient():
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.connect((host, port))
         logging.info('Connecting to %s:%s' % (host, port))
+        sock_list=[sys.stdin,self.sock]
         while 1:
             try:
-                buf = self.sock.recv(BUF_SIZE)
-                sys.stdout.write(buf.decode('UTF-8'))
-                print("enter")
-                cmd = input()
-                if cmd.strip() == '!q':
-                    sys.exit(1)
-                self.sock.send(bytes(cmd,'UTF-8'))
+                read_list,write_list,error_list=select.select(sock_list,[],[])
+                for sock in read_list:
+                    if sock==self.sock:
+                        buf = self.sock.recv(BUF_SIZE)
+                        sys.stdout.write(buf.decode('UTF-8'))
+                        print("enter")
+                    else:
+                        cmd = sock.readline()
+                        if cmd.strip() == '!q':
+                            sys.exit(1)
+                        self.sock.send(bytes(cmd,'UTF-8'))
             except:
                 self.sock.close()
 

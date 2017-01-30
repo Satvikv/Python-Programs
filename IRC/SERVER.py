@@ -7,15 +7,17 @@ import threading
 import time
 import logging
 
+import select
+
 HOST = ''
 PORT = 8018
 TIMEOUT = 5
 BUF_SIZE = 1024
 
-class WhatsUpServer(threading.Thread):
+class WhatsUpServer:
 
     def __init__(self, conn, addr):
-        threading.Thread.__init__(self)
+
         self.conn = conn
         self.addr = addr
         self.ip = self.addr[0]
@@ -246,12 +248,21 @@ def main():
     print ('-= IRC Server =-')
     print ('>> Listening on:', PORT)
     print ('')
-
+    sock_list=[sock]
+    server = None
     while 1:
+        read_list,write_list,error_list=select.select(sock_list,[],[]);
+
         try:
-            conn, addr = sock.accept()
-            server = WhatsUpServer(conn, addr)
-            server.start()
+          for s in read_list:
+              if s==sock:
+                    conn, addr = sock.accept()
+                    sock_list.append(conn)
+                    server= WhatsUpServer(conn, addr)
+
+              else:
+                  server.run()
+
         except Exception as e:
             print(e)
 
